@@ -2,7 +2,6 @@
 layout: page
 title: Voxel-MAE for subsurface geology
 description: Single-stride sparse transformer with a voxel-MAE objective used directly for dense regression on near-field mineral exploration data.
-img: assets/img/projects/voxel_mae_subsurface.png
 importance: 3
 category: research
 ---
