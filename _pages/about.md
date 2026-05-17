@@ -10,7 +10,7 @@ profile:
   image_circular: false
   more_info: >
     <p>London, UK</p>
-    <p>umer.gupta152 [at] gmail.com</p>
+    <p>umer.gupta152@gmail.com</p>
 
 selected_papers: true
 social: true
