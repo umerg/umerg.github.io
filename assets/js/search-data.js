@@ -30,14 +30,17 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "news-awarded-4-000-for-an-innovation-in-precision-mining-exploration-voxel-mae-pretraining-for-3d-subsurface-modelling-from-sparse-multimodal-borehole-logs",
-          title: 'Awarded $4,000 for an innovation in precision mining exploration — Voxel-MAE pretraining for...',
+        },{id: "news-awarded-4-000-for-an-innovation-in-precision-mining-exploration",
+          title: 'Awarded $4,000 for an innovation in precision mining exploration.',
           description: "",
-          section: "News",},{id: "news-contributed-to-origin-peptides-selection-for-innovate-uk-s-6-4m-smmip-programme-applying-machine-learning-to-inform-experimental-conditions-for-protein-synthesis",
-          title: 'Contributed to Origin Peptides’ selection for Innovate UK’s £6.4M SMMIP programme — applying...',
+          section: "News",},{id: "news-received-an-innovate-uk-nature-positive-ai-grant-for-geospatial-monitoring-of-peatlands-at-new-gradient",
+          title: 'Received an Innovate UK Nature-Positive AI grant for geospatial monitoring of peatlands at...',
           description: "",
-          section: "News",},{id: "news-started-a-research-collaboration-with-the-university-of-leipzig-and-eth-zurich-on-generative-models-for-branching-biological-morphologies",
-          title: 'Started a research collaboration with the University of Leipzig and ETH Zurich on...',
+          section: "News",},{id: "news-started-a-research-collaboration-with-eth-zurich-on-generative-models-for-branching-biological-morphologies",
+          title: 'Started a research collaboration with ETH Zurich on generative models for branching biological...',
+          description: "",
+          section: "News",},{id: "news-origin-peptides-and-new-gradient-s-selected-for-innovate-uk-s-6-4m-smmip-programme-applying-machine-learning-to-inform-real-time-experimental-optimisation-for-protein-synthesis",
+          title: 'Origin Peptides’ and New Gradient’s selected for Innovate UK’s £6.4M SMMIP programme -...',
           description: "",
           section: "News",},{id: "news-autoregressive-frontier-expansion-growing-trees-with-graph-machine-learning-accepted-to-the-gram-workshop-at-iclr-2026",
           title: 'Autoregressive Frontier Expansion: Growing Trees with Graph Machine Learning accepted to the GRaM...',
@@ -57,11 +60,11 @@ ninja.data = [{
               window.location.href = "/projects/2_peatland_foundation_model/";
             },},{id: "projects-voxel-mae-for-subsurface-geology",
           title: 'Voxel-MAE for subsurface geology',
-          description: "Masked voxel pretraining over sparse multimodal borehole logs.",
+          description: "Single-stride sparse transformer with a voxel-MAE objective used directly for dense regression on near-field mineral exploration data.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_voxel_mae_subsurface/";
-            },},{id: "projects-woodland-mapping",
-          title: 'Woodland mapping',
+            },},{id: "projects-woodland-monitoring",
+          title: 'Woodland Monitoring',
           description: "Tree counting, canopy segmentation, and species classification at national scale.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_woodland_mapping/";
