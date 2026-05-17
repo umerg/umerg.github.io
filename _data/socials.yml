@@ -1,8 +1,7 @@
 # Social media links and contact details — rendered by jekyll-socials.
 # Order here determines display order.
 cv_pdf: /assets/pdf/umer_gupta_cv.pdf
-email: umer.gupta152@gmail.com
 github_username: umerg
+linkedin_username: umer-gupta-3bb245188
 scholar_userid:
-linkedin_username:
 rss_icon: false
