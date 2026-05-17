@@ -36,8 +36,12 @@ I hold an MSc in Data Science from the University of Edinburgh (Distinction, 202
 
 Alongside research, I lead ML at New Gradient, working on geospatial foundation models for ecosystem monitoring and subsurface modelling.
 
-#### Currently working through
+<small>
 
-- **[MIT 6.S184](https://diffusion.csail.mit.edu/) — Flow Matching and Diffusion Models.** Interested in how flow matching reframes diffusion as conditional vector-field learning, and what that buys for sampling on geometric domains.
-- **[Stefano Ermon's CS236](https://deepgenerativemodels.github.io/) — Deep Generative Models.** For the probabilistic-modelling foundations underneath score-based and diffusion methods, before they were stitched together as one framework.
-- **William Hamilton, _[Graph Representation Learning](https://www.cs.mcgill.ca/~wlh/grl_book/)_.** Re-reading for the spatial / message-passing framing of GNNs as a counterpoint to the spectral derivations that dominate much of the equivariance literature.
+_Currently working through:_
+
+- [MIT 6.S184](https://diffusion.csail.mit.edu/) — Flow Matching and Diffusion Models. Interested in how flow matching reframes diffusion as conditional vector-field learning, and what that buys for sampling on geometric domains.
+- [Stefano Ermon's CS236](https://deepgenerativemodels.github.io/) — Deep Generative Models. For the probabilistic-modelling foundations underneath score-based and diffusion methods, before they were stitched together as one framework.
+- William Hamilton, _[Graph Representation Learning](https://www.cs.mcgill.ca/~wlh/grl_book/)_. Re-reading for the spatial / message-passing framing of GNNs as a counterpoint to the spectral derivations that dominate much of the equivariance literature.
+
+</small>
