@@ -15,7 +15,7 @@ footer_text: >
   Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 keywords: geometric deep learning, generative models, equivariant neural networks, topological data analysis, biomedical machine learning, graph neural networks
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: 🌿 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: # the emoji or image name used as the favicon; leave blank for none
 
 url: https://umerg.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
