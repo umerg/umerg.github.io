@@ -35,13 +35,3 @@ More broadly, I am drawn to deep learning applications in biomedicine, with a pa
 I hold an MSc in Data Science from the University of Edinburgh (Distinction, 2023) and a BSc (Hons) in Mathematics from Sri Venkateswara College, Delhi University. I am currently applying for PhD positions in the methodological and applied directions described above.
 
 Alongside research, I lead ML at New Gradient, working on geospatial foundation models for ecosystem monitoring and subsurface modelling.
-
-<small>
-
-_Currently working through:_
-
-- [MIT 6.S184](https://diffusion.csail.mit.edu/) — Flow Matching and Diffusion Models. Interested in how flow matching reframes diffusion as conditional vector-field learning, and what that buys for sampling on geometric domains.
-- [Stefano Ermon's CS236](https://deepgenerativemodels.github.io/) — Deep Generative Models. For the probabilistic-modelling foundations underneath score-based and diffusion methods, before they were stitched together as one framework.
-- William Hamilton, _[Graph Representation Learning](https://www.cs.mcgill.ca/~wlh/grl_book/)_. Re-reading for the spatial / message-passing framing of GNNs as a counterpoint to the spectral derivations that dominate much of the equivariance literature.
-
-</small>
