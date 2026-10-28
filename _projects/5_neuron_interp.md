@@ -6,16 +6,22 @@ importance: 1.5
 category: research
 ---
 
+<style>
+  .post article table { width: 100%; margin: 1rem 0 1.5rem; border-collapse: collapse; font-size: 0.95rem; }
+  .post article table th, .post article table td { padding: 0.4rem 0.6rem; text-align: left; border-bottom: 1px solid var(--global-divider-color); }
+  .post article table thead th { border-bottom: 2px solid var(--global-text-color); font-weight: 600; }
+</style>
+
 A neuron’s shape is not decoration. The branching tree of dendrites that collects its inputs decides which signals it can combine, how far they travel, and how strongly they arrive at the cell body. Shape is part of the computation. That makes neuron morphology worth modelling, and it makes generative models of morphology useful: they fill gaps in reconstructions, produce realistic populations for simulations, and help tell which features of a shape actually matter.
 
 In [earlier work](https://arxiv.org/abs/2609.38506) we trained a graph neural network to grow neurons. It doesn’t draw a neuron in one shot. It grows it the way you might sketch one: start at the cell body, the _soma_, then add one generation of branches at a time. At every step it answers two questions for each new tip: _where does it go?_ and _does it branch again?_ That is all it is ever trained to do. The neurons it grows hold up well against real pyramidal neurons from seven cell types, on the usual morphology statistics: branching patterns, branch lengths, how far the tree reaches along its main axis.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/real_vs_generated.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/real_vs_generated.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
-<div class="caption">Generated neurons next to real ones, for each of the seven cell types (from the paper).</div>
+<div class="caption">Generated neurons next to real ones, for each of the seven cell types.</div>
 
 A model that does its job well invites the next question. **What does the network know about the neuron while it is still growing it, and does it use what it knows?** Placing one tip seems to need two kinds of knowledge: what kind of neuron this is, and what this particular tip’s surroundings look like. We went looking for both.
 
@@ -32,10 +38,10 @@ It helps to see the growing process before looking inside it.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/growth_steps.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/growth_steps.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
-<div class="caption">One structure grown step by step (from the paper): grey is the tree placed so far, orange the tips added at that step.</div>
+<div class="caption">One structure grown step by step: grey is the tree placed so far, orange the tips added at that step.</div>
 
 **Positions come from noise.** Placing a tip uses flow matching: each new tip starts at a random offset from its parent and is moved, in ten small refinement steps, towards a plausible position. The branching decision is refined the same way. One consequence matters a lot for what follows: at the very first refinement step, a new tip’s position is pure noise. Anything the network “knows” about that tip at that moment, it must have worked out from the part of the tree that is already placed. All our probes, and the node-level push in Part 2, read the network at that moment.
 
@@ -73,8 +79,8 @@ where $$g(i)$$ is node $$i$$’s tree. Anything shared by the whole tree now sco
 Rescored this way, the `A1` jump vanishes: the within-tree score for soma distance at `A1` is $$-0.01$$. The same holds for every node property we probed: right after the first global step, nothing about a node’s own place is linearly readable, only facts about its tree. This doesn’t mean every node receives an identical message. Each node sends its own query to the tokens, so what comes back can differ. But whatever differs doesn’t encode any of the node properties we looked at, at least not linearly.
 
 <div class="row mt-3">
-    <div class="col-sm-10 offset-sm-1 mt-3 mt-md-0">
-        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/pooled_vs_within.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    <div class="col-sm-6 offset-sm-3 mt-3 mt-md-0">
+        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/pooled_vs_within.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
 <div class="caption">Probe score by layer for a tip’s distance to the soma, tips seven or eight deep: pooled over neurons (black) and within each neuron (blue); untrained network dashed. At <code>A1</code> the pooled score jumps to 0.60 while the within-tree score stays at −0.01. The within-tree score only rises at <code>L1</code>, when messages from the tip’s neighbours arrive.</div>
@@ -117,15 +123,15 @@ We should be careful with the third row. Give every node just its own tree’s a
 Two smaller observations. Removing the global write in only one pair of blocks has far smaller effects than removing it everywhere: the blocks back each other up, so this is a property of “the global read” rather than of any one layer. And with only the tree average, the apical grows a bit _taller_ than normal (+20 %), and two-tall-arm neurons drop to 8 %. This is the node-specific part of the global read: each node sends its own query to the tokens, so what comes back can differ from node to node. At `A1` that part encoded none of the node properties we probed, yet removing it in every block still changes growth: the apical grows taller.
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/e0_scatter.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    <div class="col-sm-8 offset-sm-2 mt-3 mt-md-0">
+        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/e0_scatter.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
 <div class="caption">One dot per neuron: its normal growth (x) against the edited growth (y), same noise, for apical reach (left) and the largest basal reach (right). Dataset average in red, own-tree average in blue (one seed).</div>
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/e0_gallery.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    <div class="col-sm-8 offset-sm-2 mt-3 mt-md-0">
+        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/e0_gallery.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
 <div class="caption">Four neurons, picked by a fixed seed, grown normally, with the dataset average and with their own tree’s average.</div>
@@ -144,7 +150,7 @@ The failures are informative too. Pushing any one of the three layer-5 subtypes 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/celltype_gallery.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/celltype_gallery.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
 <div class="caption">The same template grown normally and pushed at <code>L7</code> (α = 1) towards the layer 2/3, layer-5 near-projecting and layer-6 intratelencephalic types, with the same noise; the apical in red. Typical examples, not the strongest.</div>
@@ -176,7 +182,7 @@ What bears directly on the objective forms last: where the tip’s new segment g
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/node_level_layers.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/node_level_layers.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
 <div class="caption">Within-tree probe score by layer, tips five or six deep; untrained network dashed. Shaded: before <code>L1</code>, when no message from the parent has reached the tip. The parent’s segment arrives at <code>L1</code>; the parent’s angle, direction and alignment with the local subtree arrive at <code>L1</code> and sharpen; a basal dendrite’s rank is never computed; the tip’s own new segment forms last.</div>
@@ -227,7 +233,7 @@ What a reader should take, and not take, from this:
 
 <div class="row mt-3">
     <div class="col-sm-8 offset-sm-2 mt-3 mt-md-0">
-        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/node_push.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/node_push.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
 <div class="caption">One growth step on three partly grown neurons (chosen by hand), showing the network’s first estimate of each new tip’s segment. Left: normal (basal tips blue, apical tips light grey). Right: every basal tip pushed along the “long segment” direction at every layer <code>L5</code>–<code>L10</code>, α = 2 (red), with the normal estimate in light blue underneath. This is a larger push than in the table (α = 2, and all basal tips rather than one) so that the change is visible: basal segments come out about 17 % longer.</div>
