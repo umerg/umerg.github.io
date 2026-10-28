@@ -71,6 +71,11 @@ ninja.data = [{
           description: "Tree counting, canopy segmentation, and species classification at national scale.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_woodland_mapping/";
+            },},{id: "projects-tree-from-above-tip-from-below",
+          title: 'Tree from above, tip from below',
+          description: "Inside a network that grows neurons — what it knows while it grows a neuron, and whether it uses it.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_neuron_interp/";
             },},{
         id: 'social-github',
         title: 'GitHub',
