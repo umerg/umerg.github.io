@@ -37,11 +37,11 @@ It helps to see the growing process before looking inside it.
 **Growth goes generation by generation.** The model starts from the soma and its first branches: one _apical_ dendrite (the main one, which in pyramidal neurons grows tall towards the brain’s surface) and several _basal_ dendrites, without their positions. It places each of them in space and decides whether each branches into two children. The next step handles those children. We call one such round an _expansion step_, and the tips it handles the _frontier_. A neuron eight generations deep is grown in eight steps.
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/growth_steps.png" class="img-fluid" zoomable=true %}
+    <div class="col-sm-8 offset-sm-2 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/growth_steps.png" class="img-fluid" avoid_scaling=true zoomable=true %}
     </div>
 </div>
-<div class="caption">One structure grown step by step: grey is the tree placed so far, orange the tips added at that step.</div>
+<div class="caption">The same growing process on a botanical tree crown, shown here only to illustrate how a structure is built step by step: grey is the tree placed so far, orange the tips added at that step.</div>
 
 **Positions come from noise.** Placing a tip uses flow matching: each new tip starts at a random offset from its parent and is moved, in ten small refinement steps, towards a plausible position. The branching decision is refined the same way. One consequence matters a lot for what follows: at the very first refinement step, a new tip’s position is pure noise. Anything the network “knows” about that tip at that moment, it must have worked out from the part of the tree that is already placed. All our probes, and the node-level push in Part 2, read the network at that moment.
 
@@ -66,7 +66,7 @@ Our first probes showed a striking pattern. Right after the first global step, a
 
 It didn’t. The global tokens were telling every node what kind of tree it was in.
 
-**A toy example shows the trap.** Take two neurons. In the first, the nodes sit 10 to 12 µm from the soma; in the second, 50 to 52 µm. Now imagine a “probe” that knows nothing about any individual node, only each tree’s average distance, and predicts that average for every node. Pooled across both trees, it scores a rank correlation of 0.88. It knows which neuron each node is in, and that is enough. Real neurons behave the same way. For tips five or more branches deep, between a third and two thirds of the spread in future subtree size lies _between_ neurons rather than within them. Big neurons have big subtrees.
+**A toy example shows the trap.** Take two neurons. In the first, the nodes sit 10 to 12 µm from the soma; in the second, 50 to 52 µm. Now imagine a “probe” that knows nothing about any individual node, only each tree’s average distance, and predicts that average for every node. Pooled across both trees, it scores a rank correlation of 0.88. It knows which neuron each node is in, and that is enough. Real neurons behave the same way. For tips five or more branches deep, three quarters or more of the spread in soma distance lies _between_ neurons rather than within them. Big neurons have tips far from the soma.
 
 **The fix: score within the tree.** Before measuring rank agreement, we subtract each tree’s average from both the true value $$y$$ and the prediction $$\hat y$$:
 
