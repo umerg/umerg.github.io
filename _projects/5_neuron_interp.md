@@ -17,7 +17,7 @@ A neuron’s shape is not decoration. The branching tree of dendrites that colle
 In [earlier work](https://arxiv.org/abs/2609.38506) we trained a graph neural network to grow neurons. It doesn’t draw a neuron in one shot. It grows it the way you might sketch one: start at the cell body, the _soma_, then add one generation of branches at a time. At every step it answers two questions for each new tip: _where does it go?_ and _does it branch again?_ That is all it is ever trained to do. The neurons it grows hold up well against real pyramidal neurons from seven cell types, on the usual morphology statistics: branching patterns, branch lengths, how far the tree reaches along its main axis.
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-12 mt-3 mt-md-0" style="max-width: 525px; margin-left: auto; margin-right: auto;">
         {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/real_vs_generated.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
@@ -37,7 +37,7 @@ It helps to see the growing process before looking inside it.
 **Growth goes generation by generation.** The model starts from the soma and its first branches: one _apical_ dendrite (the main one, which in pyramidal neurons grows tall towards the brain’s surface) and several _basal_ dendrites, without their positions. It places each of them in space and decides whether each branches into two children. The next step handles those children. We call one such round an _expansion step_, and the tips it handles the _frontier_. A neuron eight generations deep is grown in eight steps.
 
 <div class="row mt-3">
-    <div class="col-sm-8 offset-sm-2 mt-3 mt-md-0">
+    <div class="col-12 mt-3 mt-md-0" style="max-width: 483px; margin-left: auto; margin-right: auto;">
         {% include figure.liquid loading="eager" path="assets/img/projects/neuron-interp/growth_steps.png" class="img-fluid" avoid_scaling=true zoomable=true %}
     </div>
 </div>
@@ -149,7 +149,7 @@ It works, for the most part. Every one of the 28 conditions (seven types, four l
 The failures are informative too. Pushing any one of the three layer-5 subtypes (intratelencephalic, extratelencephalic, near-projecting) also raises the other two. That could mean they genuinely share morphology, or that the network has a shared internal code for them; this experiment can’t tell which.
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-12 mt-3 mt-md-0" style="max-width: 777px; margin-left: auto; margin-right: auto;">
         {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/celltype_gallery.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
@@ -181,7 +181,7 @@ Facts that need comparing across dendrites are never computed: basal tips have e
 What bears directly on the objective forms last: where the tip’s new segment goes. For tips seven or eight deep, the length of that segment is barely readable for the first half of the network ($$\rho \approx 0.04$$ up to `L5`, 0.06 at `L7`), then climbs to 0.15 at `L9` and 0.25 at `L11`; the untrained network stays at zero. It weakens with depth (0.28 for tips five or six deep, 0.12 for tips thirteen or more deep), as if deep tips lean more on the scale of the tree. The tip’s own bend follows the same late rise but stays weak (0.18 for tips five or six deep, near zero for the deepest).
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-12 mt-3 mt-md-0" style="max-width: 853px; margin-left: auto; margin-right: auto;">
         {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/node_level_layers.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
@@ -232,7 +232,7 @@ What a reader should take, and not take, from this:
 - The numbers come from 512 held-out neurons (2,006 apical and 536 basal target tips); the basal estimates are noisier.
 
 <div class="row mt-3">
-    <div class="col-sm-8 offset-sm-2 mt-3 mt-md-0">
+    <div class="col-12 mt-3 mt-md-0" style="max-width: 456px; margin-left: auto; margin-right: auto;">
         {% include figure.liquid loading="lazy" path="assets/img/projects/neuron-interp/node_push.png" class="img-fluid" zoomable=true %}
     </div>
 </div>
